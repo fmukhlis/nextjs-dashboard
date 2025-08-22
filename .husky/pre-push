@@ -1,0 +1,5 @@
+npx prettier . --check
+npm run lint -- --max-warnings=0
+npm run test -- --bail --coverage
+
+exit 1
