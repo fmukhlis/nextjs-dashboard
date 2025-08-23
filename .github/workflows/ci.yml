@@ -36,7 +36,7 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
 
       - name: Install dependencies
-        uses: npm ci
+        run: npm ci
 
   lint:
     name: Lint and Prettier check
