@@ -65,7 +65,7 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
 
       - name: Install dependencies
-        uses: npm ci
+        run: npm ci
 
       - run: npx prettier . --check
 
