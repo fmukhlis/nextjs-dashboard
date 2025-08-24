@@ -7,4 +7,10 @@ describe("Homepage", () => {
     const logoImage = screen.getByRole("img", { name: /next.js logo/i });
     expect(logoImage).toBeInTheDocument();
   });
+
+  // Snapshot
+  it("renders Homepage unchanged", () => {
+    const { container } = render(<Home />);
+    expect(container).toMatchSnapshot();
+  });
 });
