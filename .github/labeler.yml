@@ -1,0 +1,38 @@
+frontend:
+  - changed-files:
+      - any-glob-to-any-file:
+          ["app/**", "components/**", "style/**", "!app/api/**"]
+
+api:
+  - changed-files:
+      - any-glob-to-any-file: ["app/api/**"]
+
+lib:
+  - changed-files:
+      - any-glob-to-any-file: ["lib/**"]
+
+tests:
+  - changed-files:
+      - any-glob-to-any-file:
+          ["**/*.test.{js,jsx,ts,tsx}", "**/__snapshots__/**"]
+
+assets:
+  - changed-files:
+      - any-glob-to-any-file: ["public/**"]
+
+ci:
+  - changed-files:
+      - any-glob-to-any-file: [".github/**"]
+
+config:
+  - changed-files:
+      - any-glob-to-any-file: ["**/*.config.{js,ts,mjs}", "**/*rc.{js,ts}"]
+
+feature:
+  - head-branch: ["^feature"]
+
+staging:
+  - base-branch: ["develop"]
+
+release:
+  - base-branch: ["main"]
