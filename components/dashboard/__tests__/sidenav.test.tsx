@@ -10,7 +10,7 @@ describe("SideNav", () => {
 
   it("renders the NavLinks", () => {
     render(<SideNav />);
-    const homeLink = screen.getByText(/Home/i);
+    const homeLink = screen.getByRole("link", { name: /Home/i });
     expect(homeLink).toHaveAttribute("href", "/dashboard");
   });
 
