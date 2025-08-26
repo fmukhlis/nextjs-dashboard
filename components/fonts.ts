@@ -5,4 +5,4 @@ import { Luckiest_Guy } from "next/font/google";
 export const roboto = Roboto({ subsets: ["latin"] });
 
 // Secondary font
-export const luckiestGuy = Luckiest_Guy({ weight: "400" });
+export const luckiestGuy = Luckiest_Guy({ weight: "400", subsets: ["latin"] });
