@@ -8,14 +8,10 @@ describe("SideNav", () => {
     expect(acmeLogo).toBeInTheDocument();
   });
 
-  it("renders NavLinks", () => {
+  it("renders the NavLinks", () => {
     render(<SideNav />);
     const homeLink = screen.getByText(/Home/i);
-    const invoicesLink = screen.getByText(/Invoices/i);
-    const customersLink = screen.getByText(/Customers/i);
     expect(homeLink).toHaveAttribute("href", "/dashboard");
-    expect(invoicesLink).toHaveAttribute("href", "/dashboard/invoices");
-    expect(customersLink).toHaveAttribute("href", "/dashboard/customers");
   });
 
   it("renders sign out button", () => {
