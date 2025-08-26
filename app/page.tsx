@@ -1,5 +1,5 @@
 import AcmeLogo from "@/components/acme-logo";
-import { luckiestGuy } from "@/components/ui/fonts";
+import { luckiestGuy } from "@/components/fonts";
 import { ArrowBigRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";

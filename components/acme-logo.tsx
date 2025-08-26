@@ -1,5 +1,5 @@
 import { Earth } from "lucide-react";
-import { luckiestGuy } from "@/components/ui/fonts";
+import { luckiestGuy } from "@/components/fonts";
 
 export default function AcmeLogo() {
   return (
