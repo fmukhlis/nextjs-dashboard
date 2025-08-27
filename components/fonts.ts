@@ -1,8 +1,10 @@
-import { Roboto } from "next/font/google";
-import { Luckiest_Guy } from "next/font/google";
+import { Roboto, Luckiest_Guy, Roboto_Slab } from "next/font/google";
 
 // Primary font
 export const roboto = Roboto({ subsets: ["latin"] });
 
 // Secondary font
-export const luckiestGuy = Luckiest_Guy({ weight: "400", subsets: ["latin"] });
+export const robotoSlab = Roboto_Slab({ subsets: ["latin"], weight: ["900"] });
+
+// Tertiary font
+export const luckiestGuy = Luckiest_Guy({ subsets: ["latin"], weight: "400" });
