@@ -4,15 +4,21 @@ import LatestInvoices from "@/components/dashboard/latest-invoices";
 import { robotoSlab } from "@/components/fonts";
 import { fetchCardData, fetchLatestInvoices, fetchRevenue } from "@/lib/data";
 
-export default async function Page() {
-  const revenue = await fetchRevenue();
-  const latestInvoices = await fetchLatestInvoices();
-  const {
-    numberOfCustomers,
-    numberOfInvoices,
-    totalPaidInvoices,
-    totalPendingInvoices,
-  } = await fetchCardData();
+export default async function Dashboard() {
+  const [
+    revenue,
+    latestInvoices,
+    {
+      numberOfCustomers,
+      numberOfInvoices,
+      totalPaidInvoices,
+      totalPendingInvoices,
+    },
+  ] = await Promise.all([
+    fetchRevenue(),
+    fetchLatestInvoices(),
+    fetchCardData(),
+  ]);
 
   return (
     <main>
