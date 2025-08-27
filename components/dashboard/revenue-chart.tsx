@@ -1,6 +1,6 @@
 import { generateYAxis } from "@/lib/utils";
 import { Calendar } from "lucide-react";
-import { luckiestGuy } from "@/components/fonts";
+import { robotoSlab } from "@/components/fonts";
 import { Revenue } from "@/lib/definitions";
 
 // This component is representational only.
@@ -24,7 +24,7 @@ export default async function RevenueChart({
 
   return (
     <div className="w-full md:col-span-4">
-      <h2 className={`${luckiestGuy.className} mb-4 text-lg md:text-xl`}>
+      <h2 className={`${robotoSlab.className} mb-4 text-lg md:text-xl`}>
         Recent Revenue
       </h2>
 
