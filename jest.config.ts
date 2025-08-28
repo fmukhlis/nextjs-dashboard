@@ -37,7 +37,7 @@ const config: Config = {
     "!<rootDir>/*.config.{js,ts}",
     "!<rootDir>/coverage/**",
     "!<rootDir>/*rc.{js,ts}",
-    "!**/(async)/**",
+    "!**/\\(async\\)/**",
     "!<rootDir>/components/placeholders/**",
   ],
 
