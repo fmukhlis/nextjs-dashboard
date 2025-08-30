@@ -2,10 +2,20 @@ import Search from "@/components/search";
 import { CreateInvoice } from "@/components/dashboard/invoices/buttons";
 import { robotoSlab } from "@/components/fonts";
 import { Suspense } from "react";
-import { InvoicesTableSkeleton } from "@/components/placeholders/skeletons";
+import {
+  InvoicesTableSkeleton,
+  PaginationSkeleton,
+} from "@/components/placeholders/skeletons";
 import InvoicesTable from "@/components/dashboard/invoices/table";
+import { fetchInvoicesPages } from "@/lib/data";
+import Pagination from "@/components/dashboard/invoices/pagination";
 
-export default async function Invoices(props: {
+async function PaginationServer({ query }: { query: string }) {
+  const totalPages = await fetchInvoicesPages(query);
+  return <Pagination totalPages={totalPages} />;
+}
+
+export default function Invoices(props: {
   searchParams?: {
     query?: string;
     page?: string;
@@ -27,7 +37,9 @@ export default async function Invoices(props: {
         <InvoicesTable query={query} currentPage={currentPage} />
       </Suspense>
       <div className="mt-5 flex w-full justify-center">
-        {/* <Pagination totalPages={totalPages} /> */}
+        <Suspense fallback={<PaginationSkeleton />}>
+          <PaginationServer query={query} />
+        </Suspense>
       </div>
     </div>
   );
