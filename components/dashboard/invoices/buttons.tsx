@@ -19,7 +19,7 @@ export function UpdateInvoice() {
       href="/dashboard/invoices"
       className="rounded-md border p-2 hover:bg-gray-100"
     >
-      <Pencil className="w-5" />
+      <Pencil className="h-5 w-5" />
     </Link>
   );
 }
@@ -29,7 +29,7 @@ export function DeleteInvoice() {
     <>
       <button type="submit" className="rounded-md border p-2 hover:bg-gray-100">
         <span className="sr-only">Delete</span>
-        <Trash className="w-5" />
+        <Trash className="h-5 w-5" />
       </button>
     </>
   );
