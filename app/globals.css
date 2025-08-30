@@ -12,6 +12,12 @@
   --font-mono: var(--font-geist-mono);
 }
 
+@keyframes shimmer {
+  100% {
+    transform: translateX(200%);
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;

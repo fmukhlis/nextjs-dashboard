@@ -23,4 +23,14 @@ describe("DashboardLayout", () => {
     const dummyChild = screen.getByText(/Dummy Child/i);
     expect(dummyChild).toBeInTheDocument();
   });
+
+  // Snapshot
+  it("renders DashboardLayout unchanged", () => {
+    const { container } = render(
+      <DashboarLayout>
+        <DummyChild />
+      </DashboarLayout>,
+    );
+    expect(container).toMatchSnapshot();
+  });
 });
