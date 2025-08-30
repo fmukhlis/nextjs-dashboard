@@ -1,43 +1,32 @@
-import { Card } from "@/components/dashboard/cards";
-import RevenueChart from "@/components/dashboard/revenue-chart";
-import LatestInvoices from "@/components/dashboard/latest-invoices";
+import RevenueChart from "@/components/dashboard/(async)/revenue-chart";
+import LatestInvoices from "@/components/dashboard/(async)/latest-invoices";
 import { robotoSlab } from "@/components/fonts";
-import { fetchCardData, fetchLatestInvoices, fetchRevenue } from "@/lib/data";
+import { Suspense } from "react";
+import {
+  CardsSkeleton,
+  LatestInvoicesSkeleton,
+  RevenueChartSkeleton,
+} from "@/components/placeholders/skeletons";
+import CardWrapper from "@/components/dashboard/(async)/cards";
 
-export default async function Dashboard() {
-  const [
-    revenue,
-    latestInvoices,
-    {
-      numberOfCustomers,
-      numberOfInvoices,
-      totalPaidInvoices,
-      totalPendingInvoices,
-    },
-  ] = await Promise.all([
-    fetchRevenue(),
-    fetchLatestInvoices(),
-    fetchCardData(),
-  ]);
-
+export default async function DashboardOverview() {
   return (
     <main>
       <h1 className={`${robotoSlab.className} mb-4 text-xl md:text-2xl`}>
         Dashboard
       </h1>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        <Card title="Collected" value={totalPaidInvoices} type="collected" />
-        <Card title="Pending" value={totalPendingInvoices} type="pending" />
-        <Card title="Total Invoices" value={numberOfInvoices} type="invoices" />
-        <Card
-          title="Total Customers"
-          value={numberOfCustomers}
-          type="customers"
-        />
+        <Suspense fallback={<CardsSkeleton />}>
+          <CardWrapper />
+        </Suspense>
       </div>
       <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
-        <RevenueChart revenue={revenue} />
-        <LatestInvoices latestInvoices={latestInvoices} />
+        <Suspense fallback={<RevenueChartSkeleton />}>
+          <RevenueChart />
+        </Suspense>
+        <Suspense fallback={<LatestInvoicesSkeleton />}>
+          <LatestInvoices />
+        </Suspense>
       </div>
     </main>
   );

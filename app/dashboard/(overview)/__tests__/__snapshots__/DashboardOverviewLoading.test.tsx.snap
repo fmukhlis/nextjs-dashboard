@@ -3,13 +3,13 @@
 exports[`DashboardOverviewLoading renders DashboardOverviewLoading unchanged 1`] = `
 <div>
   <div
-    class="before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent relative mb-4 h-8 w-36 overflow-hidden rounded-md bg-gray-100"
+    class="before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/70 before:to-transparent relative mb-4 h-8 w-36 overflow-hidden rounded-md bg-gray-100"
   />
   <div
     class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
   >
     <div
-      class="before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent relative overflow-hidden rounded-xl bg-gray-100 p-2 shadow-sm"
+      class="before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/70 before:to-transparent relative overflow-hidden rounded-xl bg-gray-100 p-2 shadow-sm"
     >
       <div
         class="flex p-4"
@@ -30,7 +30,7 @@ exports[`DashboardOverviewLoading renders DashboardOverviewLoading unchanged 1`]
       </div>
     </div>
     <div
-      class="before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent relative overflow-hidden rounded-xl bg-gray-100 p-2 shadow-sm"
+      class="before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/70 before:to-transparent relative overflow-hidden rounded-xl bg-gray-100 p-2 shadow-sm"
     >
       <div
         class="flex p-4"
@@ -51,7 +51,7 @@ exports[`DashboardOverviewLoading renders DashboardOverviewLoading unchanged 1`]
       </div>
     </div>
     <div
-      class="before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent relative overflow-hidden rounded-xl bg-gray-100 p-2 shadow-sm"
+      class="before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/70 before:to-transparent relative overflow-hidden rounded-xl bg-gray-100 p-2 shadow-sm"
     >
       <div
         class="flex p-4"
@@ -72,7 +72,7 @@ exports[`DashboardOverviewLoading renders DashboardOverviewLoading unchanged 1`]
       </div>
     </div>
     <div
-      class="before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent relative overflow-hidden rounded-xl bg-gray-100 p-2 shadow-sm"
+      class="before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/70 before:to-transparent relative overflow-hidden rounded-xl bg-gray-100 p-2 shadow-sm"
     >
       <div
         class="flex p-4"
@@ -97,7 +97,7 @@ exports[`DashboardOverviewLoading renders DashboardOverviewLoading unchanged 1`]
     class="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8"
   >
     <div
-      class="before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent relative w-full overflow-hidden md:col-span-4"
+      class="before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/70 before:to-transparent relative w-full overflow-hidden md:col-span-4"
     >
       <div
         class="mb-4 h-8 w-36 rounded-md bg-gray-100"
@@ -121,7 +121,7 @@ exports[`DashboardOverviewLoading renders DashboardOverviewLoading unchanged 1`]
       </div>
     </div>
     <div
-      class="before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent relative flex w-full flex-col overflow-hidden md:col-span-4"
+      class="before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/70 before:to-transparent relative flex w-full flex-col overflow-hidden md:col-span-4"
     >
       <div
         class="mb-4 h-8 w-36 rounded-md bg-gray-100"

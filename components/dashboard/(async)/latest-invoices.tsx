@@ -2,13 +2,11 @@ import { RefreshCw } from "lucide-react";
 import clsx from "clsx";
 import Image from "next/image";
 import { robotoSlab } from "@/components/fonts";
-import { LatestInvoice } from "@/lib/definitions";
+import { fetchLatestInvoices } from "@/lib/data";
 
-export default async function LatestInvoices({
-  latestInvoices,
-}: {
-  latestInvoices: LatestInvoice[];
-}) {
+export default async function LatestInvoices() {
+  const latestInvoices = await fetchLatestInvoices();
+
   return (
     <div className="flex w-full flex-col md:col-span-4">
       <h2 className={`${robotoSlab.className} mb-4 text-lg md:text-xl`}>
