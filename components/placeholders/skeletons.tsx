@@ -216,3 +216,17 @@ export function InvoicesTableSkeleton() {
     </div>
   );
 }
+
+export function PaginationSkeleton() {
+  return (
+    <div className={`${shimmer} relative overflow-hidden`}>
+      <div className="inline-flex">
+        <div className="flex h-10 w-10 items-center justify-center rounded-md bg-gray-100 mr-2 md:mr-4"></div>
+        <div className="flex -space-x-px">
+          <div className="flex h-10 w-[200px] items-center justify-center text-sm rounded-md bg-gray-100"></div>
+        </div>
+        <div className="flex h-10 w-10 items-center justify-center rounded-md bg-gray-100 ml-2 md:ml-4"></div>
+      </div>
+    </div>
+  );
+}
