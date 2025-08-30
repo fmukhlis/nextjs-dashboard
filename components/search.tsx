@@ -2,11 +2,14 @@
 
 import { Search as SearchIcon } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import React from "react";
 
 export default function Search({ placeholder }: { placeholder: string }) {
   const searchParams = useSearchParams();
   const pathName = usePathname();
   const { replace } = useRouter();
+  const [pathNameWithSearchParams, setPathNameWithSearchParams] =
+    React.useState("");
 
   function handleSearch(term: string) {
     const params = new URLSearchParams(searchParams);
@@ -15,7 +18,13 @@ export default function Search({ placeholder }: { placeholder: string }) {
     } else {
       params.delete("query");
     }
-    replace(`${pathName}?${params.toString()}`);
+    setPathNameWithSearchParams(`${pathName}?${params.toString()}`);
+  }
+
+  function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "Enter") {
+      replace(pathNameWithSearchParams);
+    }
   }
 
   return (
@@ -24,9 +33,10 @@ export default function Search({ placeholder }: { placeholder: string }) {
         Search
       </label>
       <input
-        className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
-        placeholder={placeholder}
         defaultValue={searchParams.get("query")?.toString()}
+        placeholder={placeholder}
+        onKeyDown={handleKeyDown}
+        className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
         onChange={(e) => {
           handleSearch(e.target.value);
         }}
