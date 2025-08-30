@@ -8,22 +8,24 @@ export default function Search({ placeholder }: { placeholder: string }) {
   const searchParams = useSearchParams();
   const pathName = usePathname();
   const { replace } = useRouter();
-  const [pathNameWithSearchParams, setPathNameWithSearchParams] =
-    React.useState("");
+  const [searchValue, setSearchValue] = React.useState(
+    () => searchParams.get("query")?.toString() ?? "",
+  );
 
-  function handleSearch(term: string) {
-    const params = new URLSearchParams(searchParams);
-    if (term) {
-      params.set("query", term);
-    } else {
-      params.delete("query");
-    }
-    setPathNameWithSearchParams(`${pathName}?${params.toString()}`);
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setSearchValue(e.target.value);
   }
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter") {
-      replace(pathNameWithSearchParams);
+      const params = new URLSearchParams(searchParams);
+      params.set("page", "1");
+      if (searchValue) {
+        params.set("query", searchValue);
+      } else {
+        params.delete("query");
+      }
+      replace(`${pathName}?${params}`);
     }
   }
 
@@ -33,13 +35,11 @@ export default function Search({ placeholder }: { placeholder: string }) {
         Search
       </label>
       <input
-        defaultValue={searchParams.get("query")?.toString()}
+        className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
         placeholder={placeholder}
         onKeyDown={handleKeyDown}
-        className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
-        onChange={(e) => {
-          handleSearch(e.target.value);
-        }}
+        onChange={handleChange}
+        value={searchValue}
       />
       <SearchIcon className="absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
     </div>
