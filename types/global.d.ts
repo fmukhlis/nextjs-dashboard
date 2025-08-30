@@ -1,3 +1,7 @@
+declare module "@neondatabase/serverless" {
+  export const __mock__: { mockedNeon: jest.Mock };
+}
+
 // This file contains type definitions for your data.
 // It describes the shape of the data, and what data type each property should accept.
 // For simplicity of teaching, we're manually defining these types.
