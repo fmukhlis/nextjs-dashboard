@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import Home from "../page";
 
-describe("Homepage", () => {
+describe("HomePage", () => {
   it("renders a login button", () => {
     render(<Home />);
     const loginButton = screen.getByRole("link", { name: /log in/i });
@@ -9,7 +9,7 @@ describe("Homepage", () => {
   });
 
   // Snapshot
-  it("renders Homepage unchanged", () => {
+  it("renders HomePage unchanged", () => {
     const { container } = render(<Home />);
     expect(container).toMatchSnapshot();
   });
