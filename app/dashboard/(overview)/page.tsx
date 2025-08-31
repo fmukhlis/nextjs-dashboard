@@ -9,7 +9,7 @@ import {
 } from "@/components/placeholders/skeletons";
 import CardWrapper from "@/components/dashboard/(async)/cards";
 
-export default async function DashboardOverview() {
+export default function DashboardOverview() {
   return (
     <main>
       <h1 className={`${robotoSlab.className} mb-4 text-xl md:text-2xl`}>
