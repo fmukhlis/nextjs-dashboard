@@ -1,3 +1,3 @@
-export default async function RevenueChart() {
+export default function RevenueChart() {
   return <div>Dummy RevenueChart</div>;
 }
