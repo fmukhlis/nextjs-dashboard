@@ -50,7 +50,6 @@ export const generatePagination = (currentPage: number, totalPages: number) => {
       2,
       "...",
       totalPages - 3,
-      ,
       totalPages - 2,
       totalPages - 1,
       totalPages,
