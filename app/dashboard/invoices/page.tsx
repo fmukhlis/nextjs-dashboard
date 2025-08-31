@@ -7,13 +7,7 @@ import {
   PaginationSkeleton,
 } from "@/components/placeholders/skeletons";
 import InvoicesTable from "@/components/dashboard/invoices/table";
-import { fetchInvoicesPages } from "@/lib/data";
-import Pagination from "@/components/dashboard/invoices/pagination";
-
-async function PaginationServer({ query }: { query: string }) {
-  const totalPages = await fetchInvoicesPages(query);
-  return <Pagination totalPages={totalPages} />;
-}
+import PaginationServer from "@/components/dashboard/invoices/(async)/pagination-server";
 
 export default function Invoices(props: {
   searchParams?: {
