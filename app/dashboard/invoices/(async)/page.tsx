@@ -6,17 +6,18 @@ import {
   InvoicesTableSkeleton,
   PaginationSkeleton,
 } from "@/components/placeholders/skeletons";
-import InvoicesTable from "@/components/dashboard/invoices/table";
+import InvoicesTable from "@/components/dashboard/invoices/(async)/table";
 import PaginationServer from "@/components/dashboard/invoices/(async)/pagination-server";
 
-export default function Invoices(props: {
-  searchParams?: {
+export default async function Invoices(props: {
+  searchParams?: Promise<{
     query?: string;
     page?: string;
-  };
+  }>;
 }) {
-  const query = props.searchParams?.query || "";
-  const currentPage = Number(props.searchParams?.page) || 1;
+  const searchParams = await props.searchParams;
+  const query = searchParams?.query || "";
+  const currentPage = Number(searchParams?.page) || 1;
 
   return (
     <div className="w-full">
