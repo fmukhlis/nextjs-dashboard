@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
-exports[`Homepage renders Homepage unchanged 1`] = `
+exports[`HomePage renders HomePage unchanged 1`] = `
 <div>
   <main
     class="flex min-h-screen flex-col p-6"
