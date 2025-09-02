@@ -28,26 +28,24 @@ const config: Config = {
   collectCoverage: true,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
-  collectCoverageFrom: [
-    "**/*.{js,jsx,ts,tsx}",
-    "!**/*.d.ts",
-    "!**/node_modules/**",
-    "!<rootDir>/out/**",
-    "!<rootDir>/.next/**",
-    "!<rootDir>/*.config.{js,ts}",
-    "!<rootDir>/coverage/**",
-    "!<rootDir>/*rc.{js,ts}",
-    "!**/\\(async\\)/**",
-    "!<rootDir>/components/placeholders/**",
-  ],
+  // collectCoverageFrom: [
+  //   "**/*.{js,jsx,ts,tsx}",
+  //   "!**/*.d.ts",
+  //   "!**/node_modules/**",
+  //   "!<rootDir>/out/**",
+  //   "!<rootDir>/.next/**",
+  //   "!<rootDir>/*.config.{js,ts}",
+  //   "!<rootDir>/coverage/**",
+  //   "!<rootDir>/*rc.{js,ts}",
+  //   "!**/\\(async\\)/**",
+  //   "!<rootDir>/components/placeholders/**",
+  // ],
 
   // The directory where Jest should output its coverage files
   coverageDirectory: "coverage",
 
   // An array of regexp pattern strings used to skip coverage collection
-  // coveragePathIgnorePatterns: [
-  //   "/node_modules/"
-  // ],
+  coveragePathIgnorePatterns: ["/node_modules/", "/components/placeholders/"],
 
   // Indicates which provider should be used to instrument code for coverage
   coverageProvider: "v8",
