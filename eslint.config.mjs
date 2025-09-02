@@ -17,7 +17,7 @@ const eslintConfig = [
   {
     rules: { "@typescript-eslint/no-require-imports": "off" },
   },
-  ...storybook.configs["flat/recommended"]
+  ...storybook.configs["flat/recommended"],
 ];
 
 export default eslintConfig;
