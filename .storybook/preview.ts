@@ -1,4 +1,5 @@
 import type { Preview } from "@storybook/nextjs-vite";
+import { withThemeByClassName } from "@storybook/addon-themes";
 import "@/app/globals.css";
 
 const preview: Preview = {
@@ -17,6 +18,15 @@ const preview: Preview = {
       test: "todo",
     },
   },
+  decorators: [
+    withThemeByClassName({
+      themes: {
+        light: "light",
+        dark: "dark",
+      },
+      defaultTheme: "dark",
+    }),
+  ],
 };
 
 export default preview;
