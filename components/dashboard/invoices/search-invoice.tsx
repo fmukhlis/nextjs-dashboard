@@ -1,13 +1,15 @@
 "use client";
 
-import { Search as SearchIcon } from "lucide-react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 
-export default function Search({ placeholder }: { placeholder: string }) {
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { SearchIcon } from "lucide-react";
+
+export default function SearchInvoice() {
   const searchParams = useSearchParams();
   const pathName = usePathname();
   const { replace } = useRouter();
+
   const [searchValue, setSearchValue] = React.useState(
     () => searchParams.get("query")?.toString() ?? "",
   );
@@ -36,7 +38,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
       </label>
       <input
         className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
-        placeholder={placeholder}
+        placeholder={"Search invoice..."}
         onKeyDown={handleKeyDown}
         onChange={handleChange}
         value={searchValue}

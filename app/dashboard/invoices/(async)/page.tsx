@@ -1,4 +1,4 @@
-import Search from "@/components/search";
+import SearchInvoice from "@/components/dashboard/invoices/search-invoice";
 import { CreateInvoice } from "@/components/dashboard/invoices/buttons";
 import { robotoSlab } from "@/components/fonts";
 import { Suspense } from "react";
@@ -24,8 +24,8 @@ export default async function Invoices(props: {
       <div className="flex w-full items-center justify-between">
         <h1 className={`${robotoSlab.className} text-2xl`}>Invoices</h1>
       </div>
-      <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
-        <Search placeholder="Search invoices..." />
+      <div className="mt-4 flex items-center gap-2 md:mt-8">
+        <SearchInvoice />
         <CreateInvoice />
       </div>
       <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
