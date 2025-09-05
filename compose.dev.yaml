@@ -13,7 +13,7 @@ services:
     ports:
       - 3000:3000
       - 6006:6006
-      
+
 volumes:
   nextjs-dashboard-app-node_modules:
 # The commented out section below is an example of how to define a PostgreSQL
