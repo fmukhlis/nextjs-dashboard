@@ -34,16 +34,18 @@ export default defineConfig({
       },
     ],
     coverage: {
-      enabled: true,
+      enabled: false,
       exclude: [
-        "components/placeholders/",
-        "**/(async)/**",
+        "data/",
         "**/.*rc.?(c|m)[jt]s",
         "**/*.{config,setup}.?(c|m)[jt]s",
         "lib/",
         "public/",
+        "app/",
+        "app/layout.tsx",
         ...coverageConfigDefaults.exclude,
       ],
+      reportsDirectory: "./coverage-storybook",
     },
   },
 });

@@ -12,6 +12,7 @@
 
 # testing
 /coverage
+/coverage-storybook
 
 # next.js
 /.next/
