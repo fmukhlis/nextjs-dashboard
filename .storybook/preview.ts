@@ -1,7 +1,14 @@
-import type { Preview } from "@storybook/nextjs-vite";
-import { withThemeByClassName } from "@storybook/addon-themes";
 import "@/app/globals.css";
+
+import { sb } from "storybook/test";
+import { withThemeByClassName } from "@storybook/addon-themes";
 import { mswLoader, initialize } from "msw-storybook-addon";
+
+import type { Preview } from "@storybook/nextjs-vite";
+
+sb.mock(import("../data/card-dto.ts"));
+sb.mock(import("../data/revenue-dto.ts"));
+sb.mock(import("../data/invoices-dto.ts"));
 
 initialize();
 
@@ -19,6 +26,10 @@ const preview: Preview = {
       // 'error' - fail CI on a11y violations
       // 'off' - skip a11y checks entirely
       test: "todo",
+    },
+
+    nextjs: {
+      appDirectory: true,
     },
   },
   decorators: [
