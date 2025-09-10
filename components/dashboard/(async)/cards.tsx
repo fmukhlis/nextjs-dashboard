@@ -1,6 +1,6 @@
 import { Banknote, Clock, Users, Inbox } from "lucide-react";
 import { luckiestGuy } from "@/components/fonts";
-import { fetchCardData } from "@/lib/data";
+import { getCardDataDTO } from "@/data/card-dto";
 
 const iconMap = {
   collected: Banknote,
@@ -15,10 +15,10 @@ export default async function CardWrapper() {
     numberOfInvoices,
     totalPaidInvoices,
     totalPendingInvoices,
-  } = await fetchCardData();
+  } = await getCardDataDTO();
 
   return (
-    <>
+    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       <Card title="Collected" value={totalPaidInvoices} type="collected" />
       <Card title="Pending" value={totalPendingInvoices} type="pending" />
       <Card title="Total Invoices" value={numberOfInvoices} type="invoices" />
@@ -27,11 +27,11 @@ export default async function CardWrapper() {
         value={numberOfCustomers}
         type="customers"
       />
-    </>
+    </div>
   );
 }
 
-export function Card({
+function Card({
   title,
   value,
   type,

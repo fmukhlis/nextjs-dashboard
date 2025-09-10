@@ -1,7 +1,7 @@
 import { generateYAxis } from "@/lib/utils";
 import { Calendar } from "lucide-react";
 import { robotoSlab } from "@/components/fonts";
-import { fetchRevenue } from "@/lib/data";
+import { getRevenueDTO } from "@/data/revenue-dto";
 
 // This component is representational only.
 // For data visualization UI, check out:
@@ -10,7 +10,7 @@ import { fetchRevenue } from "@/lib/data";
 // https://airbnb.io/visx/
 
 export default async function RevenueChart() {
-  const revenue = await fetchRevenue();
+  const revenue = await getRevenueDTO();
 
   const chartHeight = 350;
 
