@@ -1,4 +1,4 @@
 npx prettier . --check
 npm run lint -- --max-warnings=0
 npm run test -- --bail --coverage
-npm run test-storybook -- --bail --coverage
+npm run test-storybook -- --bail=1 --coverage
