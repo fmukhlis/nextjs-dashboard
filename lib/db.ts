@@ -29,23 +29,6 @@ export const sql = (
 //   }
 // }
 
-// export async function fetchCustomers() {
-//   try {
-//     const customers = (await sql`
-//       SELECT
-//         id,
-//         name
-//       FROM customers
-//       ORDER BY name ASC
-//     `) as CustomerField[];
-
-//     return customers;
-//   } catch (err) {
-//     console.error("Database Error:", err);
-//     throw new Error("Failed to fetch all customers.");
-//   }
-// }
-
 // export async function fetchFilteredCustomers(query: string) {
 //   try {
 //     const data = (await sql`
