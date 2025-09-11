@@ -47,6 +47,7 @@ export default defineConfig({
         "data/",
         "public/",
         "app/layout.tsx",
+        "coverage-storybook/",
         "**/.*rc.?(c|m)[jt]s",
         "**/*.{config,setup}.?(c|m)[jt]s",
         ...coverageConfigDefaults.exclude,
