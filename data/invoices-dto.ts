@@ -32,7 +32,7 @@ export const mockedFilteredInvoices = {
     image_url: "customers/michael-novotny.png",
     name: "John Doe",
     status: "paid",
-  } as Awaited<ReturnType<typeof getFilteredInvoicesDTO>>[0],
+  } as Awaited<ReturnType<typeof getFilteredInvoicesDTO>>[number],
   alice: {
     amount: 710,
     customer_id: "2",
@@ -42,5 +42,5 @@ export const mockedFilteredInvoices = {
     image_url: "customers/evil-rabbit.png",
     name: "Alice",
     status: "pending",
-  } as Awaited<ReturnType<typeof getFilteredInvoicesDTO>>[0],
+  } as Awaited<ReturnType<typeof getFilteredInvoicesDTO>>[number],
 };
