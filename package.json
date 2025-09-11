@@ -22,7 +22,8 @@
     "lucide-react": "^0.541.0",
     "next": "15.4.7",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "zod": "^4.1.7"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.1",
