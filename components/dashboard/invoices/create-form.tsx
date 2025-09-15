@@ -1,8 +1,8 @@
 import Link from "next/link";
 
 import { Button } from "@/components/button";
-import { CustomerField } from "@/types/global";
 import { createInvoice } from "@/lib/actions";
+import { CustomerField } from "@/types/global";
 import { Check, Clock, CircleDollarSign, UserCircle } from "lucide-react";
 
 export default function Form({ customers }: { customers: CustomerField[] }) {
