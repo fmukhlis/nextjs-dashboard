@@ -188,8 +188,6 @@ jobs:
       - run: npm run build
 
       - run: npm run build-storybook
-        env:
-          STORYBOOK_BASE_PATH: /nextjs-dashboard
 
       - name: Upload static files as artifact
         if: ${{(github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') && github.event_name == 'push'}}
