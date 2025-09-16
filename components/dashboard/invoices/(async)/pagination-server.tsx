@@ -1,6 +1,8 @@
 import Pagination from "@/components/dashboard/invoices/pagination";
 
+import { getInvoicesPagesDTO } from "@/data/invoices-dto";
+
 export default async function PaginationServer({ query }: { query: string }) {
-  console.log(query);
-  return <Pagination totalPages={9} />;
+  const totalPages = await getInvoicesPagesDTO(query);
+  return <Pagination totalPages={totalPages} />;
 }
