@@ -1,3 +1,4 @@
+import { deleteInvoice } from "@/lib/actions";
 import { Pencil, Plus, Trash } from "lucide-react";
 import Link from "next/link";
 
@@ -13,10 +14,10 @@ export function CreateInvoice() {
   );
 }
 
-export function UpdateInvoice({ id }: { id: string }) {
+export function UpdateInvoice({ invoiceId }: { invoiceId: string }) {
   return (
     <Link
-      href={`/dashboard/invoices/${id}/edit`}
+      href={`/dashboard/invoices/${invoiceId}/edit`}
       className="flex rounded-md border p-2 hover:bg-gray-100"
     >
       <span className="sr-only">Update Invoice</span>
@@ -25,13 +26,14 @@ export function UpdateInvoice({ id }: { id: string }) {
   );
 }
 
-export function DeleteInvoice() {
+export function DeleteInvoice({ invoiceId }: { invoiceId: string }) {
+  const deleteInvoiceWithId = deleteInvoice.bind(null, invoiceId);
   return (
-    <>
+    <form action={deleteInvoiceWithId}>
       <button type="submit" className="rounded-md border p-2 hover:bg-gray-100">
         <span className="sr-only">Delete Invoice</span>
         <Trash className="h-5 w-5" />
       </button>
-    </>
+    </form>
   );
 }

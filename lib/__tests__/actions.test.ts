@@ -1,5 +1,5 @@
 import { revalidatePath } from "next/cache";
-import { createInvoice, updateInvoice } from "../actions";
+import { createInvoice, deleteInvoice, updateInvoice } from "../actions";
 import { sql } from "../db";
 import { redirect } from "next/navigation";
 
@@ -44,7 +44,7 @@ describe("createInvoice(formData)", () => {
   });
 });
 
-describe("updateInvoice(id, formData)", () => {
+describe("updateInvoice(invoiceId, formData)", () => {
   it("update invoice successfully and navigates back to the invoices page", async () => {
     const mockFormData = new FormData();
 
@@ -57,5 +57,13 @@ describe("updateInvoice(id, formData)", () => {
     expect(sql).toHaveBeenCalledTimes(1);
     expect(revalidatePath).toHaveBeenCalledWith("/dashboard/invoices");
     expect(redirect).toHaveBeenCalledWith("/dashboard/invoices");
+  });
+});
+
+describe("deleteInvoice(invoiceId)", () => {
+  it("delete invoice successfully and rerender the invoices page", async () => {
+    await deleteInvoice("1");
+    expect(sql).toHaveBeenCalledTimes(1);
+    expect(revalidatePath).toHaveBeenCalledWith("/dashboard/invoices");
   });
 });

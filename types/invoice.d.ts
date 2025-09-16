@@ -31,3 +31,7 @@ export type UpdateInvoiceRecord = {
   customerId: string;
   amountInCents: number;
 };
+
+export type DeleteInvoiceRecord = {
+  id: string;
+};

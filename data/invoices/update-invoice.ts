@@ -2,10 +2,11 @@ import { sql } from "@/lib/db";
 import { FormSchema } from "./schema";
 import { UpdateInvoiceRecord } from "@/types/invoice";
 
-export const UpdateInvoice = FormSchema.omit({ id: true, date: true });
+export const UpdateInvoice = FormSchema.omit({ date: true });
 
-export function updateInvoiceDTO(formData: FormData) {
+export function updateInvoiceDTO(invoiceId: string, formData: FormData) {
   const validated = UpdateInvoice.parse({
+    id: invoiceId,
     amount: formData.get("amount"),
     status: formData.get("status"),
     customerId: formData.get("customerId"),
