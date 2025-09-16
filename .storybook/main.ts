@@ -21,7 +21,7 @@ const config: StorybookConfig = {
   staticDirs: ["../public"],
   previewHead: (head) => {
     const basePath = process.env.STORYBOOK_BASE_PATH || "/";
-    return `${head}<base href="${basePath}">`;
+    return `<base href="${basePath}">${head}`;
   },
 };
 export default config;
