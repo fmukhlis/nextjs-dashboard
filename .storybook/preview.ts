@@ -10,12 +10,10 @@ sb.mock(import("../data/card-dto.ts"));
 sb.mock(import("../data/revenue-dto.ts"));
 sb.mock(import("../data/invoices-dto.ts"));
 
-const publicUrl = process.env.PUBLIC_URL ?? "";
-
 initialize({
   onUnhandledRequest: "bypass",
   serviceWorker: {
-    url: `${publicUrl}/mockServiceWorker.js`,
+    url: `./mockServiceWorker.js`,
   },
 });
 
