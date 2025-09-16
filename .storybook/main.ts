@@ -19,5 +19,9 @@ const config: StorybookConfig = {
     options: {},
   },
   staticDirs: ["../public"],
+  viteFinal: (config) => {
+    config.base = "/nextjs-dashboard";
+    return config;
+  },
 };
 export default config;
