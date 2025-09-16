@@ -1,9 +1,7 @@
 import PaginationServer from "../pagination-server";
 
-import { mocked } from "storybook/test";
 import { Suspense } from "react";
 import { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { getInvoicesPagesDTO } from "@/data/invoices-dto";
 import { PaginationServerSkeleton } from "@/components/dashboard/invoices/skeletons";
 
 const meta = {
@@ -13,9 +11,6 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  async beforeEach() {
-    mocked(getInvoicesPagesDTO).mockResolvedValue(9);
-  },
 } satisfies Meta<typeof PaginationServer>;
 
 export default meta;
