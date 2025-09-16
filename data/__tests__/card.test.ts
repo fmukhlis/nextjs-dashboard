@@ -1,13 +1,6 @@
-jest.mock("@neondatabase/serverless", () => {
-  const mockedNeon = jest.fn();
-  return {
-    __esModule: true,
-    neon: () => mockedNeon,
-    __mock__: { mockedNeon },
-  };
-});
+jest.mock("@/lib/db");
 
-import { __mock__ } from "@neondatabase/serverless";
+import { sql } from "@/lib/db";
 import { getCardData } from "../card";
 import { formatCurrency } from "@/lib/utils";
 import { getCardDataDTO } from "@/data/card-dto";
@@ -18,7 +11,7 @@ describe("Get Card Data", () => {
     const mockCustomerCount = [{ count: 5 }];
     const mockInvoiceStatus = [{ paid: 10000, pending: 10000 }];
 
-    __mock__.mockedNeon
+    (sql as unknown as jest.Mock)
       .mockResolvedValueOnce(mockInvoiceCount)
       .mockResolvedValueOnce(mockCustomerCount)
       .mockResolvedValueOnce(mockInvoiceStatus)
@@ -64,7 +57,7 @@ describe("Get Card Data", () => {
   });
 
   it("throws an error", async () => {
-    __mock__.mockedNeon.mockRejectedValue("");
+    (sql as unknown as jest.Mock).mockRejectedValue("");
     await expect(getCardDataDTO()).rejects.toThrow(
       "Failed to fetch card data.",
     );

@@ -1,13 +1,6 @@
-jest.mock("@neondatabase/serverless", () => {
-  const mockedNeon = jest.fn();
-  return {
-    __esModule: true,
-    neon: () => mockedNeon,
-    __mock__: { mockedNeon },
-  };
-});
+jest.mock("@/lib/db");
 
-import { __mock__ } from "@neondatabase/serverless";
+import { sql } from "@/lib/db";
 import { getRevenue } from "../revenue";
 import { getRevenueDTO } from "../revenue-dto";
 
@@ -16,7 +9,7 @@ describe("Get Revenue", () => {
     const mockData = [{ month: "Januari", revenue: 10000 }] as Awaited<
       ReturnType<typeof getRevenue>
     >;
-    __mock__.mockedNeon.mockResolvedValue(mockData);
+    (sql as unknown as jest.Mock).mockResolvedValue(mockData);
 
     // DAL
     const dal = await getRevenue();
@@ -28,7 +21,7 @@ describe("Get Revenue", () => {
   });
 
   it("throws an error", async () => {
-    __mock__.mockedNeon.mockRejectedValue("");
+    (sql as unknown as jest.Mock).mockRejectedValue("");
     await expect(getRevenue()).rejects.toThrow("Failed to fetch revenue data.");
   });
 });

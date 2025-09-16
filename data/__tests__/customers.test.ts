@@ -1,15 +1,9 @@
-jest.mock("@neondatabase/serverless", () => {
-  const mockedNeon = jest.fn();
-  return {
-    __esModule: true,
-    neon: () => mockedNeon,
-    __mock__: { mockedNeon },
-  };
-});
+jest.mock("@/lib/db");
 
 import { __mock__ } from "@neondatabase/serverless";
 import { getCustomers } from "../customers";
 import { getCustomersDTO } from "../customers-dto";
+import { sql } from "@/lib/db";
 
 describe("Get Customers", () => {
   it("returns data correctly", async () => {
@@ -23,7 +17,7 @@ describe("Get Customers", () => {
         name: "Alice",
       },
     ];
-    __mock__.mockedNeon.mockResolvedValue(mockData);
+    (sql as unknown as jest.Mock).mockResolvedValue(mockData);
 
     // DAL
     const expectedDal = mockData;
@@ -37,7 +31,7 @@ describe("Get Customers", () => {
   });
 
   it("throws an error", async () => {
-    __mock__.mockedNeon.mockRejectedValue("");
+    (sql as unknown as jest.Mock).mockRejectedValue("");
     await expect(getCustomers()).rejects.toThrow(
       "Failed to fetch all customers.",
     );

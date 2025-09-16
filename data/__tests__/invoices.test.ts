@@ -1,9 +1,4 @@
-jest.mock("@/lib/db", () => {
-  return {
-    __esModule: true,
-    sql: jest.fn(),
-  };
-});
+jest.mock("@/lib/db");
 
 import { sql } from "@/lib/db";
 import { formatCurrency } from "@/lib/utils";
