@@ -56,6 +56,7 @@ describe("generatePagination()", () => {
       totalPages,
     ]);
   });
+
   it("returns end pagination with ellipsis when currentPage >= totalPages - 2 and totalPages > 7", () => {
     const totalPages = 9;
     const currentPage = totalPages - 1;
@@ -69,6 +70,7 @@ describe("generatePagination()", () => {
       totalPages,
     ]);
   });
+
   it("returns middle pagination with ellipsis on both sides", () => {
     const totalPages = 9;
     const currentPage = 5;

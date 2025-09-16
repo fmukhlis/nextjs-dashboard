@@ -1,11 +1,12 @@
 import Image from "next/image";
+import InvoiceStatus from "@/components/dashboard/invoices/status";
+
+import { getFilteredInvoicesDTO } from "@/data/invoices-dto";
+import { formatDateToLocal, formatCurrency } from "@/lib/utils";
 import {
   UpdateInvoice,
   DeleteInvoice,
 } from "@/components/dashboard/invoices/buttons";
-import InvoiceStatus from "@/components/dashboard/invoices/status";
-import { formatDateToLocal, formatCurrency } from "@/lib/utils";
-import { fetchFilteredInvoices } from "@/lib/data";
 
 export default async function InvoicesTable({
   query,
@@ -14,7 +15,7 @@ export default async function InvoicesTable({
   query: string;
   currentPage: number;
 }) {
-  const invoices = await fetchFilteredInvoices(query, currentPage);
+  const invoices = await getFilteredInvoicesDTO(query, currentPage);
 
   return (
     <div className="mt-6 flow-root">
@@ -50,8 +51,8 @@ export default async function InvoicesTable({
                     <p>{formatDateToLocal(invoice.date)}</p>
                   </div>
                   <div className="flex justify-end gap-2">
-                    <UpdateInvoice />
-                    <DeleteInvoice />
+                    <UpdateInvoice invoiceId={invoice.id} />
+                    <DeleteInvoice invoiceId={invoice.id} />
                   </div>
                 </div>
               </div>
@@ -112,8 +113,8 @@ export default async function InvoicesTable({
                   </td>
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
                     <div className="flex justify-end gap-3">
-                      <UpdateInvoice />
-                      <DeleteInvoice />
+                      <UpdateInvoice invoiceId={invoice.id} />
+                      <DeleteInvoice invoiceId={invoice.id} />
                     </div>
                   </td>
                 </tr>
