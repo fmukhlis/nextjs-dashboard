@@ -1,22 +1,22 @@
-import { __mock__ } from "@neondatabase/serverless";
+import { sql } from "@/lib/db";
 import { formatCurrency } from "@/lib/utils";
 import {
   getInvoicesPages,
   getLatestInvoices,
   getFilteredInvoices,
+  getInvoiceById,
 } from "../invoices";
 import {
   getInvoicesPagesDTO,
   getLatestInvoicesDTO,
   getFilteredInvoicesDTO,
+  getInvoiceByIdDTO,
 } from "../invoices-dto";
 
-jest.mock("@neondatabase/serverless", () => {
-  const mockedNeon = jest.fn();
+jest.mock("@/lib/db", () => {
   return {
     __esModule: true,
-    neon: () => mockedNeon,
-    __mock__: { mockedNeon },
+    sql: jest.fn(),
   };
 });
 
@@ -31,7 +31,7 @@ describe("Get Latest Invoices", () => {
         amount: 1,
       },
     ];
-    __mock__.mockedNeon.mockResolvedValue(mockData);
+    (sql as unknown as jest.Mock).mockResolvedValue(mockData);
 
     // DAL
     const expectedDal = [
@@ -47,7 +47,7 @@ describe("Get Latest Invoices", () => {
   });
 
   it("throws an error", async () => {
-    __mock__.mockedNeon.mockRejectedValue("");
+    (sql as unknown as jest.Mock).mockRejectedValue("");
     await expect(getLatestInvoices()).rejects.toThrow(
       "Failed to fetch the latest invoices.",
     );
@@ -68,7 +68,7 @@ describe("Get Filtered Invoices", () => {
         status: "paid",
       },
     ];
-    __mock__.mockedNeon.mockResolvedValue(mockData);
+    (sql as unknown as jest.Mock).mockResolvedValue(mockData);
 
     // DAL
     const expectedDal = mockData;
@@ -82,7 +82,7 @@ describe("Get Filtered Invoices", () => {
   });
 
   it("throws an error", async () => {
-    __mock__.mockedNeon.mockRejectedValue("");
+    (sql as unknown as jest.Mock).mockRejectedValue("");
     await expect(getFilteredInvoices("", 1)).rejects.toThrow(
       "Failed to fetch invoices.",
     );
@@ -92,7 +92,7 @@ describe("Get Filtered Invoices", () => {
 describe("Get Invoices Pages", () => {
   it("returns data correctly", async () => {
     const mockData = [{ count: 1 }];
-    __mock__.mockedNeon.mockResolvedValue(mockData);
+    (sql as unknown as jest.Mock).mockResolvedValue(mockData);
 
     // DAL
     const expectedDal = mockData[0].count;
@@ -106,9 +106,41 @@ describe("Get Invoices Pages", () => {
   });
 
   it("throws an error", async () => {
-    __mock__.mockedNeon.mockRejectedValue("");
+    (sql as unknown as jest.Mock).mockRejectedValue("");
     await expect(getInvoicesPages("")).rejects.toThrow(
       "Failed to fetch total number of invoices.",
+    );
+  });
+});
+
+describe("Get Invoice By Its Id", () => {
+  it("returns data correctly", async () => {
+    const mockData = [
+      {
+        id: "1",
+        amount: 100,
+        status: "pending",
+        customer_id: "1",
+      },
+    ];
+
+    (sql as unknown as jest.Mock).mockResolvedValue(mockData);
+
+    // DAL
+    const expectedDal = { ...mockData[0], amount: mockData[0].amount / 100 };
+    const dal = await getInvoiceById(mockData[0].id);
+    expect(dal).toEqual(expectedDal);
+
+    // DTO
+    const expectedDto = expectedDal;
+    const dto = await getInvoiceByIdDTO(mockData[0].id);
+    expect(dto).toEqual(expectedDto);
+  });
+
+  it("throws an error", async () => {
+    (sql as unknown as jest.Mock).mockRejectedValue("");
+    await expect(getInvoiceById("1")).rejects.toThrow(
+      "Failed to fetch invoice.",
     );
   });
 });

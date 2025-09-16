@@ -1,5 +1,5 @@
 import { revalidatePath } from "next/cache";
-import { createInvoice } from "../actions";
+import { createInvoice, updateInvoice } from "../actions";
 import { sql } from "../db";
 import { redirect } from "next/navigation";
 
@@ -24,15 +24,35 @@ jest.mock("next/navigation", () => {
   };
 });
 
+beforeEach(() => {
+  jest.clearAllMocks();
+});
+
 describe("createInvoice(formData)", () => {
-  it("validate the input, perform a db query, call revalidatePath and redirect correctly", async () => {
+  it("create invoice successfully and navigates back to the invoices page", async () => {
     const mockFormData = new FormData();
 
     mockFormData.set("amount", "100");
-    mockFormData.set("customerId", "1");
     mockFormData.set("status", "pending");
+    mockFormData.set("customerId", "1");
 
     await createInvoice(mockFormData);
+
+    expect(sql).toHaveBeenCalledTimes(1);
+    expect(revalidatePath).toHaveBeenCalledWith("/dashboard/invoices");
+    expect(redirect).toHaveBeenCalledWith("/dashboard/invoices");
+  });
+});
+
+describe("updateInvoice(id, formData)", () => {
+  it("update invoice successfully and navigates back to the invoices page", async () => {
+    const mockFormData = new FormData();
+
+    mockFormData.set("amount", "100");
+    mockFormData.set("status", "pending");
+    mockFormData.set("customerId", "1");
+
+    await updateInvoice("1", mockFormData);
 
     expect(sql).toHaveBeenCalledTimes(1);
     expect(revalidatePath).toHaveBeenCalledWith("/dashboard/invoices");

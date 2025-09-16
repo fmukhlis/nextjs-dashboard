@@ -1,7 +1,8 @@
-import z from "zod";
-
 import { sql } from "@/lib/db";
+import { FormSchema } from "./schema";
 import { CreateInvoiceRecord } from "@/types/invoice";
+
+export const CreateInvoice = FormSchema.omit({ id: true, date: true });
 
 export function createInvoiceDTO(formData: FormData) {
   const validated = CreateInvoice.parse({
@@ -13,23 +14,13 @@ export function createInvoiceDTO(formData: FormData) {
 }
 
 export async function createInvoiceDAL({
-  amount,
+  amountInCents,
   customerId,
   date,
   status,
 }: CreateInvoiceRecord) {
   await sql`
     INSERT INTO invoices (customer_id, amount, status, date)
-    VALUES (${customerId}, ${amount}, ${status}, ${date})
+    VALUES (${customerId}, ${amountInCents}, ${status}, ${date})
   `;
 }
-
-const FormSchema = z.object({
-  id: z.string(),
-  customerId: z.string(),
-  amount: z.coerce.number<number>(),
-  date: z.string(),
-  status: z.enum(["pending", "paid"]),
-});
-
-export const CreateInvoice = FormSchema.omit({ id: true, date: true });

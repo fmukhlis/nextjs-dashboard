@@ -13,10 +13,10 @@ export function CreateInvoice() {
   );
 }
 
-export function UpdateInvoice() {
+export function UpdateInvoice({ id }: { id: string }) {
   return (
     <Link
-      href="/dashboard/invoices"
+      href={`/dashboard/invoices/${id}/edit`}
       className="flex rounded-md border p-2 hover:bg-gray-100"
     >
       <span className="sr-only">Update Invoice</span>

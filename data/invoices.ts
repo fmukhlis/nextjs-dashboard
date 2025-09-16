@@ -2,7 +2,7 @@ import "server-only";
 
 import { sql } from "@/lib/db";
 import { formatCurrency } from "@/lib/utils";
-import { InvoicesTable, LatestInvoiceRaw } from "@/types/global";
+import { InvoiceForm, InvoicesTable, LatestInvoiceRaw } from "@/types/global";
 
 export async function getLatestInvoices() {
   try {
@@ -69,5 +69,29 @@ export async function getInvoicesPages(query: string) {
     return totalPages;
   } catch {
     throw new Error("Failed to fetch total number of invoices.");
+  }
+}
+
+export async function getInvoiceById(id: string) {
+  try {
+    const data = (await sql`
+      SELECT
+        invoices.id,
+        invoices.customer_id,
+        invoices.amount,
+        invoices.status
+      FROM invoices
+      WHERE invoices.id = ${id};
+    `) as InvoiceForm[];
+
+    const invoice = data.map((invoice) => ({
+      ...invoice,
+      // Convert amount from cents to dollars
+      amount: invoice.amount / 100,
+    }));
+
+    return invoice[0];
+  } catch {
+    throw new Error("Failed to fetch invoice.");
   }
 }

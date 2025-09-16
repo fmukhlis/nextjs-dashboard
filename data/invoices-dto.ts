@@ -1,5 +1,6 @@
 import {
   getFilteredInvoices,
+  getInvoiceById,
   getInvoicesPages,
   getLatestInvoices,
 } from "./invoices";
@@ -20,6 +21,11 @@ export async function getFilteredInvoicesDTO(
 export async function getInvoicesPagesDTO(query: string) {
   const invoicesPages = await getInvoicesPages(query);
   return invoicesPages;
+}
+
+export async function getInvoiceByIdDTO(id: string) {
+  const invoice = await getInvoiceById(id);
+  return invoice;
 }
 
 export const mockedFilteredInvoices = {
