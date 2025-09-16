@@ -1,7 +1,3 @@
-import { __mock__ } from "@neondatabase/serverless";
-import { getCustomers } from "../customers";
-import { getCustomersDTO } from "../customers-dto";
-
 jest.mock("@neondatabase/serverless", () => {
   const mockedNeon = jest.fn();
   return {
@@ -10,6 +6,10 @@ jest.mock("@neondatabase/serverless", () => {
     __mock__: { mockedNeon },
   };
 });
+
+import { __mock__ } from "@neondatabase/serverless";
+import { getCustomers } from "../customers";
+import { getCustomersDTO } from "../customers-dto";
 
 describe("Get Customers", () => {
   it("returns data correctly", async () => {

@@ -2,3 +2,4 @@
 build
 coverage
 coverage-storybook
+public/mockServiceWorker.js

@@ -1,3 +1,10 @@
+jest.mock("@/lib/db", () => {
+  return {
+    __esModule: true,
+    sql: jest.fn(),
+  };
+});
+
 import { sql } from "@/lib/db";
 import { formatCurrency } from "@/lib/utils";
 import {
@@ -12,13 +19,6 @@ import {
   getFilteredInvoicesDTO,
   getInvoiceByIdDTO,
 } from "../invoices-dto";
-
-jest.mock("@/lib/db", () => {
-  return {
-    __esModule: true,
-    sql: jest.fn(),
-  };
-});
 
 describe("Get Latest Invoices", () => {
   it("returns data correctly", async () => {

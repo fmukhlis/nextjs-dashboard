@@ -1,8 +1,3 @@
-import { __mock__ } from "@neondatabase/serverless";
-import { getCardData } from "../card";
-import { formatCurrency } from "@/lib/utils";
-import { getCardDataDTO } from "@/data/card-dto";
-
 jest.mock("@neondatabase/serverless", () => {
   const mockedNeon = jest.fn();
   return {
@@ -11,6 +6,11 @@ jest.mock("@neondatabase/serverless", () => {
     __mock__: { mockedNeon },
   };
 });
+
+import { __mock__ } from "@neondatabase/serverless";
+import { getCardData } from "../card";
+import { formatCurrency } from "@/lib/utils";
+import { getCardDataDTO } from "@/data/card-dto";
 
 describe("Get Card Data", () => {
   it("returns data correctly", async () => {
