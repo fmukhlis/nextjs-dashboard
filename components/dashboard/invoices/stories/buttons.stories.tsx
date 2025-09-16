@@ -16,9 +16,9 @@ export const Create: Story = {
 };
 
 export const Update: Story = {
-  render: () => <DeleteInvoice />,
+  render: () => <DeleteInvoice invoiceId="1" />,
 };
 
 export const Delete: Story = {
-  render: () => <UpdateInvoice />,
+  render: () => <UpdateInvoice invoiceId="1" />,
 };
