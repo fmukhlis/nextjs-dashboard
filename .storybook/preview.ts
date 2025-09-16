@@ -10,12 +10,7 @@ sb.mock(import("../data/card-dto.ts"));
 sb.mock(import("../data/revenue-dto.ts"));
 sb.mock(import("../data/invoices-dto.ts"));
 
-initialize({
-  onUnhandledRequest: "bypass",
-  serviceWorker: {
-    url: `./mockServiceWorker.js`,
-  },
-});
+initialize();
 
 const preview: Preview = {
   parameters: {
