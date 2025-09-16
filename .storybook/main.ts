@@ -21,7 +21,7 @@ const config: StorybookConfig = {
   staticDirs: ["../public"],
   viteFinal: (config, { configType }) => {
     if (configType === "PRODUCTION") {
-      config.base = "/nextjs-dashboard";
+      config.base = process.env.STORYBOOK_BASE_PATH ?? "/";
     }
     return config;
   },
