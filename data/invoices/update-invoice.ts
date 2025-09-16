@@ -4,7 +4,7 @@ import { UpdateInvoiceRecord } from "@/types/invoice";
 
 export const UpdateInvoice = FormSchema.omit({ id: true, date: true });
 
-export function UpdateInvoiceDTO(formData: FormData) {
+export function updateInvoiceDTO(formData: FormData) {
   const validated = UpdateInvoice.parse({
     amount: formData.get("amount"),
     status: formData.get("status"),
@@ -13,7 +13,7 @@ export function UpdateInvoiceDTO(formData: FormData) {
   return validated;
 }
 
-export async function UpdateInvoiceDAL({
+export async function updateInvoiceDAL({
   id,
   status,
   customerId,

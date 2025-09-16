@@ -7,8 +7,8 @@ import {
   createInvoiceDTO,
 } from "@/data/invoices/create-invoice";
 import {
-  UpdateInvoiceDAL,
-  UpdateInvoiceDTO,
+  updateInvoiceDAL,
+  updateInvoiceDTO,
 } from "@/data/invoices/update-invoice";
 
 export async function createInvoice(formData: FormData) {
@@ -29,11 +29,11 @@ export async function createInvoice(formData: FormData) {
 }
 
 export async function updateInvoice(id: string, formData: FormData) {
-  const { amount, customerId, status } = UpdateInvoiceDTO(formData);
+  const { amount, customerId, status } = updateInvoiceDTO(formData);
 
   const amountInCents = amount * 100;
 
-  await UpdateInvoiceDAL({
+  await updateInvoiceDAL({
     id,
     status,
     customerId,
