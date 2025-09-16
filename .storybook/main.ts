@@ -19,11 +19,9 @@ const config: StorybookConfig = {
     options: {},
   },
   staticDirs: ["../public"],
-  viteFinal: (config, { configType }) => {
-    if (configType === "PRODUCTION") {
-      config.base = process.env.STORYBOOK_BASE_PATH ?? "/";
-    }
-    return config;
+  previewHead: (head) => {
+    const basePath = process.env.STORYBOOK_BASE_PATH || "/";
+    return `${head}<base href="${basePath}">`;
   },
 };
 export default config;
