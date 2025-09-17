@@ -19,9 +19,24 @@ const config: StorybookConfig = {
     options: {},
   },
   staticDirs: ["../public"],
-  previewHead: (head) => {
-    const basePath = process.env.STORYBOOK_BASE_PATH || "/";
-    return `<base href="${basePath}">${head}`;
+  viteFinal: (config, { configType }) => {
+    if (configType === "PRODUCTION") {
+      const basePath = process.env.STORYBOOK_BASE_PATH || "/";
+      config.base = basePath;
+
+      config.plugins = config.plugins ?? [];
+      config.plugins.push({
+        name: "fix-vite-inject-mocker-entry-path",
+        enforce: "post",
+        transformIndexHtml(html) {
+          return html.replace(
+            /src="\/vite-inject-mocker-entry.js"/,
+            `src=".\/vite-inject-mocker-entry.js"`,
+          );
+        },
+      });
+    }
+    return config;
   },
 };
 export default config;
