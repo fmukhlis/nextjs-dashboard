@@ -5,13 +5,21 @@ import { UpdateInvoiceRecord } from "@/types/invoice";
 export const UpdateInvoice = FormSchema.omit({ date: true });
 
 export function updateInvoiceDTO(invoiceId: string, formData: FormData) {
-  const validated = UpdateInvoice.parse({
+  const validated = UpdateInvoice.safeParse({
     id: invoiceId,
     amount: formData.get("amount"),
     status: formData.get("status"),
     customerId: formData.get("customerId"),
   });
-  return validated;
+
+  if (!validated.success) {
+    return {
+      errors: validated.error.flatten().fieldErrors,
+      message: "Missing fields. Failed to create invoice.",
+    };
+  }
+
+  return validated.data;
 }
 
 export async function updateInvoiceDAL({

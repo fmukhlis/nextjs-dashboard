@@ -82,11 +82,19 @@ describe("updateInvoice(invoiceId, formData)", () => {
   mockFormData.set("customerId", "1");
 
   it("update invoice successfully and navigates back to the invoices page", async () => {
-    await updateInvoice("1", mockFormData);
+    await updateInvoice("1", {}, mockFormData);
 
     expect(sql).toHaveBeenCalledTimes(1);
     expect(revalidatePath).toHaveBeenCalledWith("/dashboard/invoices");
     expect(redirect).toHaveBeenCalledWith("/dashboard/invoices");
+  });
+
+  it("returns validation errors if the value doesn't match the schema", async () => {
+    const { errors } = await updateInvoice("1", {}, new FormData());
+
+    expect(errors).toHaveProperty("status");
+    expect(errors).toHaveProperty("amount");
+    expect(errors).toHaveProperty("customerId");
   });
 
   it("handles error gracefully", async () => {
@@ -104,7 +112,7 @@ describe("updateInvoice(invoiceId, formData)", () => {
 
       const { updateInvoice } = require("../actions");
 
-      await updateInvoice("1", mockFormData);
+      await updateInvoice("1", {}, mockFormData);
 
       expect(revalidatePath).toHaveBeenCalledWith("/dashboard/invoices");
       expect(redirect).toHaveBeenCalledWith("/dashboard/invoices");

@@ -42,11 +42,18 @@ export async function createInvoice(_: State, formData: FormData) {
   redirect("/dashboard/invoices");
 }
 
-export async function updateInvoice(invoiceId: string, formData: FormData) {
-  const { id, amount, customerId, status } = updateInvoiceDTO(
-    invoiceId,
-    formData,
-  );
+export async function updateInvoice(
+  invoiceId: string,
+  _: State,
+  formData: FormData,
+) {
+  const validated = updateInvoiceDTO(invoiceId, formData);
+
+  if ("errors" in validated) {
+    return validated;
+  }
+
+  const { id, amount, customerId, status } = validated;
 
   const amountInCents = amount * 100;
 
