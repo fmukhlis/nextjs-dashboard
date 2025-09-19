@@ -21,12 +21,16 @@ export async function createInvoice(formData: FormData) {
   const date = new Date().toISOString().split("T")[0];
   const amountInCents = amount * 100;
 
-  await createInvoiceDAL({
-    date,
-    status,
-    customerId,
-    amountInCents,
-  });
+  try {
+    await createInvoiceDAL({
+      date,
+      status,
+      customerId,
+      amountInCents,
+    });
+  } catch (error) {
+    console.error(error);
+  }
 
   revalidatePath("/dashboard/invoices");
   redirect("/dashboard/invoices");
@@ -40,12 +44,16 @@ export async function updateInvoice(invoiceId: string, formData: FormData) {
 
   const amountInCents = amount * 100;
 
-  await updateInvoiceDAL({
-    id,
-    status,
-    customerId,
-    amountInCents,
-  });
+  try {
+    await updateInvoiceDAL({
+      id,
+      status,
+      customerId,
+      amountInCents,
+    });
+  } catch (error) {
+    console.error(error);
+  }
 
   revalidatePath("/dashboard/invoices");
   redirect("/dashboard/invoices");
@@ -54,7 +62,11 @@ export async function updateInvoice(invoiceId: string, formData: FormData) {
 export async function deleteInvoice(invoiceId: string) {
   const { id } = deleteInvoiceDTO(invoiceId);
 
-  await deleteInvoiceDAL({ id });
+  try {
+    await deleteInvoiceDAL({ id });
+  } catch (error) {
+    console.error(error);
+  }
 
   revalidatePath("/dashboard/invoices");
 }
