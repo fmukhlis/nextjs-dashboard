@@ -35,12 +35,20 @@ describe("createInvoice(formData)", () => {
   mockFormData.set("status", "pending");
   mockFormData.set("customerId", "1");
 
-  it("create invoice successfully and navigates back to the invoices page", async () => {
-    await createInvoice(mockFormData);
+  it("creates invoice successfully and navigates back to the invoices page", async () => {
+    await createInvoice({}, mockFormData);
 
     expect(sql).toHaveBeenCalledTimes(1);
     expect(revalidatePath).toHaveBeenCalledWith("/dashboard/invoices");
     expect(redirect).toHaveBeenCalledWith("/dashboard/invoices");
+  });
+
+  it("returns validation errors if the value doesn't match the schema", async () => {
+    const { errors } = await createInvoice({}, new FormData());
+
+    expect(errors).toHaveProperty("status");
+    expect(errors).toHaveProperty("amount");
+    expect(errors).toHaveProperty("customerId");
   });
 
   it("handles error gracefully", async () => {
@@ -58,7 +66,7 @@ describe("createInvoice(formData)", () => {
 
       const { createInvoice } = require("../actions");
 
-      await createInvoice(mockFormData);
+      await createInvoice({}, mockFormData);
 
       expect(revalidatePath).toHaveBeenCalledWith("/dashboard/invoices");
       expect(redirect).toHaveBeenCalledWith("/dashboard/invoices");
