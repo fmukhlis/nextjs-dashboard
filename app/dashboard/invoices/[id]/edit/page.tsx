@@ -1,5 +1,6 @@
 import EditInvoice from "@/components/pages/edit-invoice";
 
+import { notFound } from "next/navigation";
 import { getCustomersDTO } from "@/data/customers-dto";
 import { getInvoiceByIdDTO } from "@/data/invoices-dto";
 
@@ -14,6 +15,10 @@ export default async function EditInvoicePage({
     getCustomersDTO(),
     getInvoiceByIdDTO(id),
   ]);
+
+  if (!invoice) {
+    notFound();
+  }
 
   return <EditInvoice customers={customers} invoice={invoice} />;
 }
