@@ -15,8 +15,14 @@ import {
   deleteInvoiceDTO,
 } from "@/data/invoices/delete-invoice";
 
-export async function createInvoice(formData: FormData) {
-  const { amount, customerId, status } = createInvoiceDTO(formData);
+export async function createInvoice(_: State, formData: FormData) {
+  const validated = createInvoiceDTO(formData);
+
+  if ("errors" in validated) {
+    return validated;
+  }
+
+  const { amount, customerId, status } = validated;
 
   const date = new Date().toISOString().split("T")[0];
   const amountInCents = amount * 100;
@@ -36,11 +42,18 @@ export async function createInvoice(formData: FormData) {
   redirect("/dashboard/invoices");
 }
 
-export async function updateInvoice(invoiceId: string, formData: FormData) {
-  const { id, amount, customerId, status } = updateInvoiceDTO(
-    invoiceId,
-    formData,
-  );
+export async function updateInvoice(
+  invoiceId: string,
+  _: State,
+  formData: FormData,
+) {
+  const validated = updateInvoiceDTO(invoiceId, formData);
+
+  if ("errors" in validated) {
+    return validated;
+  }
+
+  const { id, amount, customerId, status } = validated;
 
   const amountInCents = amount * 100;
 
@@ -70,3 +83,12 @@ export async function deleteInvoice(invoiceId: string) {
 
   revalidatePath("/dashboard/invoices");
 }
+
+export type State = {
+  errors?: {
+    customerId?: string[];
+    amount?: string[];
+    status?: string[];
+  };
+  message?: string | null;
+};
