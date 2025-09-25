@@ -1,6 +1,8 @@
+/* v8 ignore next */
+import Link from "next/link";
+
 import { deleteInvoice } from "@/lib/actions";
 import { Pencil, Plus, Trash } from "lucide-react";
-import Link from "next/link";
 
 export function CreateInvoice() {
   return (

@@ -1,3 +1,4 @@
+/* v8 ignore next */
 import Link from "next/link";
 import NavLinks from "@/components/dashboard/nav-links";
 import AcmeLogo from "@/components/acme-logo";

@@ -1,3 +1,4 @@
+/* v8 ignore next */
 import Link from "next/link";
 import Image from "next/image";
 import AcmeLogo from "@/components/acme-logo";

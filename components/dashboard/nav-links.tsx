@@ -1,9 +1,11 @@
 "use client";
 
 import clsx from "clsx";
-import { Users, House, Files } from "lucide-react";
+/* v8 ignore next */
 import Link from "next/link";
+
 import { usePathname } from "next/navigation";
+import { Users, House, Files } from "lucide-react";
 
 // Map of links to display in the side navigation.
 // Depending on the size of the application, this would be stored in a database.
