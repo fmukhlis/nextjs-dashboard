@@ -1,5 +1,6 @@
-import { Meta, StoryObj } from "@storybook/nextjs-vite";
 import Home from "../home";
+
+import { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 const meta = {
   title: "Pages/Home",
