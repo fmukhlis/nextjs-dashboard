@@ -7,7 +7,6 @@ import { Power } from "lucide-react";
 import { nextAuthResult } from "@/auth";
 
 export default function SideNav() {
-  const { signOut } = nextAuthResult;
   return (
     <div className="flex h-full flex-col px-3 py-4 md:px-2">
       <Link
@@ -24,6 +23,7 @@ export default function SideNav() {
         <form
           action={async () => {
             "use server";
+            const { signOut } = nextAuthResult;
             await signOut({ redirectTo: "/" });
           }}
         >
