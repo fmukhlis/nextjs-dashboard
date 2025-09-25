@@ -1,4 +1,6 @@
-export { auth as middleware } from "@/auth";
+import { nextAuthResult } from "./auth";
+
+export default nextAuthResult.auth;
 
 export const config = {
   matcher: [
