@@ -6,9 +6,11 @@ import { mswLoader, initialize } from "msw-storybook-addon";
 
 import type { Preview } from "@storybook/nextjs-vite";
 
+sb.mock(import("../auth.ts"));
 sb.mock(import("../data/card-dto.ts"));
 sb.mock(import("../data/revenue-dto.ts"));
 sb.mock(import("../data/invoices-dto.ts"));
+sb.mock(import("../features/user/action"), { spy: true });
 
 initialize({
   onUnhandledRequest: "bypass",

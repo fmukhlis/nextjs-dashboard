@@ -1,14 +1,14 @@
-import Home from "../home";
+import SignIn from "../sign-in";
 
 import { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 const meta = {
-  title: "Pages/Home",
-  component: Home,
+  title: "Pages/Signin",
+  component: SignIn,
   parameters: {
-    layout: "centered",
+    layout: "fullscreen",
   },
-} satisfies Meta<typeof Home>;
+} satisfies Meta<typeof SignIn>;
 
 export default meta;
 

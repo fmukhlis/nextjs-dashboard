@@ -1,5 +1,6 @@
 "use client";
 
+/* v8 ignore next */
 import Link from "next/link";
 
 import { Button } from "@/components/button";
