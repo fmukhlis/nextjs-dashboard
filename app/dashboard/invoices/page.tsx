@@ -1,5 +1,11 @@
 import Invoices from "@/components/pages/invoices";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Invoices",
+};
+
 export default async function InvoicesPage(props: {
   searchParams?: Promise<{
     query?: string;
