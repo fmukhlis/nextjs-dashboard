@@ -1,0 +1,42 @@
+import type { StorybookConfig } from "@storybook/nextjs-vite";
+
+const config: StorybookConfig = {
+  stories: [
+    "../stories/**/*.mdx",
+    "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    "../**/stories/**/*.stories.@(js|jsx|ts|tsx)",
+  ],
+  addons: [
+    "@chromatic-com/storybook",
+    "@storybook/addon-docs",
+    "@storybook/addon-onboarding",
+    "@storybook/addon-a11y",
+    "@storybook/addon-vitest",
+    "@storybook/addon-themes",
+  ],
+  framework: {
+    name: "@storybook/nextjs-vite",
+    options: {},
+  },
+  staticDirs: ["../public"],
+  viteFinal: (config, { configType }) => {
+    if (configType === "PRODUCTION") {
+      const basePath = process.env.STORYBOOK_BASE_PATH || "/";
+      config.base = basePath;
+
+      config.plugins = config.plugins ?? [];
+      config.plugins.push({
+        name: "fix-vite-inject-mocker-entry-path",
+        enforce: "post",
+        transformIndexHtml(html) {
+          return html.replace(
+            /src="\/vite-inject-mocker-entry.js"/,
+            `src=".\/vite-inject-mocker-entry.js"`,
+          );
+        },
+      });
+    }
+    return config;
+  },
+};
+export default config;

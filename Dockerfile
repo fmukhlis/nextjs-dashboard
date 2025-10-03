@@ -26,6 +26,9 @@ WORKDIR /app
 COPY package.json package-lock.json* ./
 RUN --mount=type=cache,target=/root/.npm \
     npm ci
+
+RUN npx playwright install chromium --with-deps
+
 COPY . .
 
 # Next.js collects completely anonymous telemetry data about general usage
